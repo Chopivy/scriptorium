@@ -1,0 +1,82 @@
+[
+    {
+        "type": "tab",
+        "id": "3b910fb0.c46ef",
+        "label": ""
+    },
+    {
+        "id": "b6cffeae.493",
+        "type": "http request",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "url": "https://api.scriptr.io/hello/helloworld",
+        "x": 291,
+        "y": 92,
+        "z": "3b910fb0.c46ef",
+        "wires": [
+            [
+                "c741a972.38be58"
+            ]
+        ]
+    },
+    {
+        "id": "6230d072.9dcf3",
+        "type": "inject",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 115,
+        "y": 91,
+        "z": "3b910fb0.c46ef",
+        "wires": [
+            [
+                "9dfd3fe2.6202c"
+            ]
+        ]
+    },
+    {
+        "id": "82eb2e6c.7d14d",
+        "type": "debug",
+        "name": "Result",
+        "active": true,
+        "console": "false",
+        "complete": "payload.response.result",
+        "x": 516,
+        "y": 91,
+        "z": "3b910fb0.c46ef",
+        "wires": []
+    },
+    {
+        "id": "9dfd3fe2.6202c",
+        "type": "function",
+        "name": "",
+        "func": "var access_token = 'SEZCQjgzMkQ5NDpzY3JpcHRyOkNCRkY5RTA4MjFCNEY0OEMwNDY4NUM5RkEwODBCNjZB';\nvar content_type = 'application/x-www-form-urlencoded';\nmsg.headers = {'Authorization':'Bearer ' + access_token, 'content-type' : content_type};\nmsg.payload='apsws.time=' + msg.payload;\nreturn msg;",
+        "outputs": 1,
+        "x": 202,
+        "y": 27,
+        "z": "3b910fb0.c46ef",
+        "wires": [
+            [
+                "b6cffeae.493"
+            ]
+        ]
+    },
+    {
+        "id": "c741a972.38be58",
+        "type": "json",
+        "name": "",
+        "x": 397,
+        "y": 27,
+        "z": "3b910fb0.c46ef",
+        "wires": [
+            [
+                "82eb2e6c.7d14d"
+            ]
+        ]
+    }
+]
