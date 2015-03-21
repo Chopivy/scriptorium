@@ -1,0 +1,181 @@
+[
+    {
+        "type": "tab",
+        "id": "3b910fb0.c46ef",
+        "label": ""
+    },
+    {
+        "id": "b6cffeae.493",
+        "type": "http request",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "url": "https://api.scriptr.io/openweather/test",
+        "x": 297,
+        "y": 96,
+        "z": "3b910fb0.c46ef",
+        "wires": [
+            [
+                "c741a972.38be58"
+            ]
+        ]
+    },
+    {
+        "id": "6230d072.9dcf3",
+        "type": "inject",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 115,
+        "y": 91,
+        "z": "3b910fb0.c46ef",
+        "wires": [
+            [
+                "9dfd3fe2.6202c"
+            ]
+        ]
+    },
+    {
+        "id": "9dfd3fe2.6202c",
+        "type": "function",
+        "name": "curl",
+        "func": "var access_token = 'SEZCQjgzMkQ5NA==';\nvar content_type = 'application/x-www-form-urlencoded';\nmsg.headers = {'Authorization':'Bearer ' + access_token, 'content-type' : content_type};\nmsg.payload='apsws.time=' + msg.payload;\nreturn msg;",
+        "outputs": 1,
+        "x": 202,
+        "y": 27,
+        "z": "3b910fb0.c46ef",
+        "wires": [
+            [
+                "b6cffeae.493"
+            ]
+        ]
+    },
+    {
+        "id": "c741a972.38be58",
+        "type": "json",
+        "name": "",
+        "x": 442,
+        "y": 96,
+        "z": "3b910fb0.c46ef",
+        "wires": [
+            [
+                "72fa647f.8d059c"
+            ]
+        ]
+    },
+    {
+        "id": "72fa647f.8d059c",
+        "type": "switch",
+        "name": "",
+        "property": "payload.response.metadata.status",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "failure"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 2,
+        "x": 580,
+        "y": 96,
+        "z": "3b910fb0.c46ef",
+        "wires": [
+            [
+                "cbaeda88.345128"
+            ],
+            [
+                "952e149d.6ad1e8"
+            ]
+        ]
+    },
+    {
+        "id": "cbaeda88.345128",
+        "type": "debug",
+        "name": "Error",
+        "active": true,
+        "console": "false",
+        "complete": "payload.response.metadata.errorCode",
+        "x": 759,
+        "y": 60,
+        "z": "3b910fb0.c46ef",
+        "wires": []
+    },
+    {
+        "id": "38655a78.c79aa6",
+        "type": "debug",
+        "name": "510",
+        "active": true,
+        "console": "false",
+        "complete": "payload.response.result.body",
+        "x": 997,
+        "y": 111,
+        "z": "3b910fb0.c46ef",
+        "wires": []
+    },
+    {
+        "id": "952e149d.6ad1e8",
+        "type": "switch",
+        "name": "",
+        "property": "payload.response.result.status",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "200"
+            },
+            {
+                "t": "eq",
+                "v": "510"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 3,
+        "x": 779,
+        "y": 133,
+        "z": "3b910fb0.c46ef",
+        "wires": [
+            [
+                "bee60d1.f4119f"
+            ],
+            [
+                "38655a78.c79aa6"
+            ],
+            [
+                "b71e05b0.48e1f8"
+            ]
+        ]
+    },
+    {
+        "id": "b71e05b0.48e1f8",
+        "type": "debug",
+        "name": "otherwise",
+        "active": true,
+        "console": "false",
+        "complete": "payload.response.result",
+        "x": 1002,
+        "y": 149,
+        "z": "3b910fb0.c46ef",
+        "wires": []
+    },
+    {
+        "id": "bee60d1.f4119f",
+        "type": "debug",
+        "name": "200",
+        "active": true,
+        "console": "false",
+        "complete": "payload.response.result.body",
+        "x": 997,
+        "y": 72,
+        "z": "3b910fb0.c46ef",
+        "wires": []
+    }
+]
