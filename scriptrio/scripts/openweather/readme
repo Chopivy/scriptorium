@@ -1,4 +1,4 @@
->> curl -X POST  -F apsws.time=1426965068073 -H 'Authorization: bearer SEZCQjgzMkQ5NDpzY3JpcHRyOjU3QjQ3OUU4NTA4QUNCRjU1MjE1NkFFMUQzNTRFOTRE' 'https://api.scriptr.io/openweather/test'
+>> curl -X POST  -F apsws.time=1426965068073 -H 'Authorization: bearer ' 'https://api.scriptr.io/openweather/test'
 {
 	"metadata": {
 		"requestId": "39eb14b7-ee84-44db-8db2-5115cb5a68fe",
