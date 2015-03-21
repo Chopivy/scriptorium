@@ -11,8 +11,8 @@
         "method": "POST",
         "ret": "txt",
         "url": "https://api.scriptr.io/hello/helloworld",
-        "x": 291,
-        "y": 92,
+        "x": 297,
+        "y": 96,
         "z": "3b910fb0.c46ef",
         "wires": [
             [
@@ -40,22 +40,10 @@
         ]
     },
     {
-        "id": "82eb2e6c.7d14d",
-        "type": "debug",
-        "name": "Result",
-        "active": true,
-        "console": "false",
-        "complete": "payload.response.result",
-        "x": 516,
-        "y": 91,
-        "z": "3b910fb0.c46ef",
-        "wires": []
-    },
-    {
         "id": "9dfd3fe2.6202c",
         "type": "function",
         "name": "",
-        "func": "var access_token = '';\nvar content_type = 'application/x-www-form-urlencoded';\nmsg.headers = {'Authorization':'Bearer ' + access_token, 'content-type' : content_type};\nmsg.payload='apsws.time=' + msg.payload;\nreturn msg;",
+        "func": "var access_token = 'SEZCQjgzMkQ5NA==';\nvar content_type = 'application/x-www-form-urlencoded';\nmsg.headers = {'Authorization':'Bearer ' + access_token, 'content-type' : content_type};\nmsg.payload='apsws.time=' + msg.payload;\nreturn msg;",
         "outputs": 1,
         "x": 202,
         "y": 27,
@@ -70,13 +58,65 @@
         "id": "c741a972.38be58",
         "type": "json",
         "name": "",
-        "x": 397,
-        "y": 27,
+        "x": 442,
+        "y": 96,
         "z": "3b910fb0.c46ef",
         "wires": [
             [
-                "82eb2e6c.7d14d"
+                "72fa647f.8d059c"
             ]
         ]
+    },
+    {
+        "id": "72fa647f.8d059c",
+        "type": "switch",
+        "name": "",
+        "property": "payload.response.metadata.status",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "failure"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 2,
+        "x": 580,
+        "y": 96,
+        "z": "3b910fb0.c46ef",
+        "wires": [
+            [
+                "cbaeda88.345128"
+            ],
+            [
+                "38655a78.c79aa6"
+            ]
+        ]
+    },
+    {
+        "id": "cbaeda88.345128",
+        "type": "debug",
+        "name": "Error",
+        "active": true,
+        "console": "false",
+        "complete": "payload.response.metadata.errorCode",
+        "x": 759,
+        "y": 60,
+        "z": "3b910fb0.c46ef",
+        "wires": []
+    },
+    {
+        "id": "38655a78.c79aa6",
+        "type": "debug",
+        "name": "OK",
+        "active": true,
+        "console": "false",
+        "complete": "payload.response.result",
+        "x": 755,
+        "y": 112,
+        "z": "3b910fb0.c46ef",
+        "wires": []
     }
 ]
