@@ -1,0 +1,143 @@
+[
+    {
+        "type": "tab",
+        "id": "56b4a15d.a94b6",
+        "label": "tab"
+    },
+    {
+        "id": "a96af5fb.569508",
+        "type": "http request",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "url": "https://api.scriptr.io/geo_ip/geo_ip",
+        "x": 297,
+        "y": 96,
+        "z": "56b4a15d.a94b6",
+        "wires": [
+            [
+                "a72899b5.58d768"
+            ]
+        ]
+    },
+    {
+        "id": "df666ef9.20999",
+        "type": "inject",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 115,
+        "y": 91,
+        "z": "56b4a15d.a94b6",
+        "wires": [
+            [
+                "106f1ee3.ef90e1"
+            ]
+        ]
+    },
+    {
+        "id": "106f1ee3.ef90e1",
+        "type": "function",
+        "name": "curl",
+        "func": "var access_token = 'XXXXXXXXXXyyyy==';\n\nvar content_type = 'application/x-www-form-urlencoded';\nmsg.headers = {'Authorization':'Bearer ' + access_token,\n  'content-type' : content_type};\n\nvar ts = msg.payload;\nmsg.payload = {'apsws.time=':ts,'payload':ts};\nreturn msg;",
+        "outputs": 1,
+        "x": 202,
+        "y": 27,
+        "z": "56b4a15d.a94b6",
+        "wires": [
+            [
+                "a96af5fb.569508"
+            ]
+        ]
+    },
+    {
+        "id": "a72899b5.58d768",
+        "type": "json",
+        "name": "",
+        "x": 442,
+        "y": 96,
+        "z": "56b4a15d.a94b6",
+        "wires": [
+            [
+                "7bc27805.843d88"
+            ]
+        ]
+    },
+    {
+        "id": "c7b5eca9.384a1",
+        "type": "debug",
+        "name": "Failure",
+        "active": true,
+        "console": "false",
+        "complete": "payload.response.metadata.errorCode",
+        "x": 747,
+        "y": 67,
+        "z": "56b4a15d.a94b6",
+        "wires": []
+    },
+    {
+        "id": "7bc27805.843d88",
+        "type": "switch",
+        "name": "",
+        "property": "payload.response.metadata.status",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "failure"
+            },
+            {
+                "t": "eq",
+                "v": "success"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 2,
+        "x": 586,
+        "y": 97,
+        "z": "56b4a15d.a94b6",
+        "wires": [
+            [
+                "c7b5eca9.384a1"
+            ],
+            [
+                "704d8f8d.8fb27"
+            ]
+        ]
+    },
+    {
+        "id": "704d8f8d.8fb27",
+        "type": "debug",
+        "name": "Success",
+        "active": true,
+        "console": "false",
+        "complete": "payload.response.result",
+        "x": 747,
+        "y": 127,
+        "z": "56b4a15d.a94b6",
+        "wires": []
+    },
+    {
+        "id": "71227489.8edd8c",
+        "type": "comment",
+        "name": "Debug",
+        "info": "22.03.2015, 06:39:06[Success]\n[msg.payload.response.result] : (Object)\n{ \"metadata\": { \"status\": \"success\" } }",
+        "x": 908,
+        "y": 126,
+        "z": "56b4a15d.a94b6",
+        "wires": []
+    },
+    {
+        "id": "9e8ef860.617108",
+        "type": "comment",
+        "name": "Geo IP",
+        "info": "",
+        "x": 405,
+        "y": 22,
+        "z": "56b4a15d.a94b6",
+        "wires": []
+    }
+]
