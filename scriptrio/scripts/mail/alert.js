@@ -7,7 +7,7 @@ execute=anonymous
 var mailBody = "Hello,<br>An intrusion was detected at " + time + "<br>";
 mailBody += "<a href='https://api.scriptr.io/discard?id=" + request.id + "'>Click here to discard the alert</a>";
 var emailConfig = {
-  "to": "zbigniew.mlynarski@gmail.com",
+  "to": "abc@def.com",
   "fromName": "Node-RED flows",
   "subject": "Intrusion alert",
   "body": mailBody
