@@ -1,2 +1,2 @@
 # scriptorium
-Scripts from scriptr.io
+Scripts for scriptr.io with Node-RED examples.
