@@ -43,7 +43,7 @@
         "id": "9dfd3fe2.6202c",
         "type": "function",
         "name": "",
-        "func": "var access_token = 'SEZCQjgzMkQ5NA==';\nvar content_type = 'application/x-www-form-urlencoded';\nmsg.headers = {'Authorization':'Bearer ' + access_token, 'content-type' : content_type};\nmsg.payload='apsws.time=' + msg.payload;\nreturn msg;",
+        "func": "var access_token = 'XXXXXXXXXXyyyy==';\nvar content_type = 'application/x-www-form-urlencoded';\nmsg.headers = {'Authorization':'Bearer ' + access_token, 'content-type' : content_type};\nmsg.payload='apsws.time=' + msg.payload;\nreturn msg;",
         "outputs": 1,
         "x": 202,
         "y": 27,
