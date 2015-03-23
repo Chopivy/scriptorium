@@ -1,1 +1,1 @@
-All examples for Node-RED use access_token = 'XXXXXXXXXXyyyy=='.
+All examples for Node-RED use anonymous token: access_token = 'XXXXXXXXXXyyyy=='. 
